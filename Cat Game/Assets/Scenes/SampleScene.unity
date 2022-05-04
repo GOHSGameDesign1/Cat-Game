@@ -251,6 +251,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58d4f6799c87d2548a3938cdc7b04473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dash:
+    m_Name: Dash
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 758c6d4c-2ff1-498d-9220-b88692750f7c
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 05863f9d-4783-49c8-b2c3-d0c204f33b59
+      m_Path: <Keyboard>/space
+      m_Interactions: Press
+      m_Processors: 
+      m_Groups: 
+      m_Action: Dash
+      m_Flags: 0
+    m_Flags: 0
   rb: {fileID: 17312044}
   moveSpeed: 5
 --- !u!50 &17312044

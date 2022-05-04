@@ -9,6 +9,7 @@ public class Player_Controller : MonoBehaviour
     
     private Vector2 moveDirection;
     private InputAction move;
+    private InputAction dash;
 
     public Rigidbody2D rb;
     public float moveSpeed;
@@ -22,11 +23,16 @@ public class Player_Controller : MonoBehaviour
     {
         move = playerMovement.Player.Move;
         move.Enable();
+
+        dash = playerMovement.Player.Dash;
+        dash.Enable();
+        dash.performed += Dash;
     }
 
     private void OnDisable()
     {
         move.Disable();
+        dash.Disable();
     }
 
     // Update is called once per frame
@@ -38,5 +44,10 @@ public class Player_Controller : MonoBehaviour
     private void FixedUpdate()
     {
         rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+    }
+
+    private void Dash(InputAction.CallbackContext context)
+    {
+        Debug.Log("dashed");
     }
 }
