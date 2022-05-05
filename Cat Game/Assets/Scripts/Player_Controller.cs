@@ -49,5 +49,6 @@ public class Player_Controller : MonoBehaviour
     private void Dash(InputAction.CallbackContext context)
     {
         Debug.Log("dashed");
+        Debug.Log("OGMOGMOGMOSMGOSM");
     }
 }
