@@ -13,10 +13,13 @@ public class Player_Controller : MonoBehaviour
 
     public Rigidbody2D rb;
     public float moveSpeed;
+    private bool isDashing;
+
     // Start is called before the first frame update
     void Awake()
     {
         playerMovement = new PlayerControls();
+        isDashing = false;
     }
 
     private void OnEnable()
@@ -43,12 +46,15 @@ public class Player_Controller : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+        if (isDashing != true)
+        {
+            rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+        }
     }
 
     private void Dash(InputAction.CallbackContext context)
     {
-        Debug.Log("dashed");
-        Debug.Log("OGMOGMOGMOSMGOSM");
+        rb.velocity = transform.right * moveDirection * 50;
+        isDashing = true;
     }
 }
