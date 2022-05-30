@@ -783,7 +783,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  waitTime: 0.3
+  waitTime: 0.5
   pathHolder: {fileID: 1554133781}
 --- !u!212 &1822161548
 SpriteRenderer:
