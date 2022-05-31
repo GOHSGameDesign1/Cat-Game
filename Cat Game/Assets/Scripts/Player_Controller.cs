@@ -13,10 +13,17 @@ public class Player_Controller : MonoBehaviour
 
     public Rigidbody2D rb;
     public float moveSpeed;
+    private bool isDashing;
+    public float dashDuration;
+    private float currentDashTimer;
+    public float dashSpeed;
+    private float dashDirectionX;
+    private float dashDirectionY;
     // Start is called before the first frame update
     void Awake()
     {
         playerMovement = new PlayerControls();
+        isDashing = false;
     }
 
     private void OnEnable()
@@ -43,12 +50,44 @@ public class Player_Controller : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+        if (!isDashing)
+        {
+            Move();
+            return;
+        }
+
+        DashFunction();
+
+        currentDashTimer -= Time.deltaTime;
+
+        if (currentDashTimer <= 0)
+        {
+            isDashing = false;
+        }
+
     }
 
     private void Dash(InputAction.CallbackContext context)
     {
-        Debug.Log("dashed");
-        Debug.Log("OGMOGMOGMOSMGOSM");
+        if(moveDirection.x != 0 || moveDirection.y != 0)
+        {
+            isDashing = true;
+            currentDashTimer = dashDuration;
+            rb.velocity = Vector2.zero;
+            dashDirectionX = moveDirection.x;
+            dashDirectionY = moveDirection.y;
+            Debug.Log("dashed");
+            Debug.Log("OGMOGMOGMOSMGOSM");
+        }
+    }
+
+    void Move()
+    {
+        rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+    }
+
+    void DashFunction() 
+    {
+        rb.velocity = new Vector2(transform.right.x * moveDirection.x * dashSpeed, transform.up.y * moveDirection.y * dashSpeed);
     }
 }
